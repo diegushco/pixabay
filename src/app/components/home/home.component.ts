@@ -105,6 +105,7 @@ export class HomeComponent implements OnInit {
   chgPage(pageNumber): void{
     this.actualPage = pageNumber;
     this.search();
+    window.scroll(0, 0);
   }
 
 }
