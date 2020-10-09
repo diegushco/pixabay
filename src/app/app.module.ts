@@ -8,6 +8,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ImagesComponent } from './components/images/images.component';
 import { FormsModule } from '@angular/forms';
+import { PixabayService } from './services/images/pixabay.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,9 +21,10 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PixabayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

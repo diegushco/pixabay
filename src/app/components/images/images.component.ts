@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IHit } from '../../interfaces/Pixabay.interface';
 
 @Component({
   selector: 'app-images',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImagesComponent implements OnInit {
 
+  @Input() image: IHit;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.image);
   }
 
 }

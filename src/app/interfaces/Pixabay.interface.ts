@@ -1,10 +1,10 @@
 export interface IPixabay {
   total: number;
   totalHits: number;
-  hits: Array<IHits>;
+  hits: Array<IHit>;
 }
 
-export interface IHits {
+export interface IHit {
   id: number;
   pageURL: string;
   type: string;
