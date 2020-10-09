@@ -16,11 +16,15 @@ export class PixabayService {
     this.key = environment.key;
   }
 
-  getImageBySearch(text?: string): Observable<IPixabay>{
+  getImageBySearch(text?: string, category?: string): Observable<IPixabay>{
     let params = new HttpParams().set('key', this.key);
 
     if (text) {
       params = params.set('q', text);
+    }
+
+    if (category) {
+      params = params.set('category', category);
     }
 
     const apiURL = `${this.api_url}/`;

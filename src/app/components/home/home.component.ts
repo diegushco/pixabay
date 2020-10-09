@@ -20,6 +20,18 @@ export class HomeComponent implements OnInit {
 
   images$: Observable<any> = new Observable();
 
+  category: string = 'all';
+
+  categories = [
+    {value: 'All' },
+    {value: 'Science'},
+    {value: 'Education'},
+    {value: 'People'},
+    {value: 'Feelings'},
+    {value: 'Computer'},
+    {value: 'Buildings'}
+  ];
+
   constructor(
     private pixaBayService: PixabayService
   ) { }
@@ -33,7 +45,7 @@ export class HomeComponent implements OnInit {
       tap((data)=>console.log("resultado:", data)),
       share()
     );
-    this.searchSubject.next(this.textToSearch);
+    this.searchSubject.next('');
     console.log("mmm");
   }
 
@@ -44,6 +56,10 @@ export class HomeComponent implements OnInit {
 
   doSearch(text): Observable<IPixabay>{
     return this.pixaBayService.getImageBySearch(text);
+  }
+
+  chgCategory(value:string){
+    console.log("->"+value);
   }
 
 }

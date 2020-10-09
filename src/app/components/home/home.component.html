@@ -12,6 +12,11 @@
         <div class="input-group">
           <input type="text" (keyup.enter)="search()" [(ngModel)]="textToSearch" class="form-control" placeholder="Search images on this site (Education, computers, science...)">
           <div class="input-group-append">
+            <select #category (change)="chgCategory(category.value)" id="lunch" class="form-control" data-live-search="true" title="Please select a category">
+              <option *ngFor="let category of categories">{{category.value}}</option>
+          </select>
+          </div>
+          <div class="input-group-append">
             <button (click)="search()" class="btn btn-secondary" type="button">
               <fa-icon [icon]="faSearch"></fa-icon>
             </button>
