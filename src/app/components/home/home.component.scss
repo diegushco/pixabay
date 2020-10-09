@@ -1,0 +1,17 @@
+div{
+  img.logo{
+    width: 15rem;
+  }
+
+  span.text-image{
+    position: relative;
+    left: 14rem;
+    bottom: 3rem;
+    font-weight: 800;
+    color: #2D5499;
+  }
+
+  &.container-fluid.no-padding{
+    padding: 0;
+  }
+}

@@ -1,0 +1,31 @@
+<!-- Page Content -->
+<div class="container-fluid no-padding">
+
+  <div class="row no-gutters">
+    <div class="col-12 text-center pt-3">
+      <span class="text-image">Imagenes</span>
+      <img class="logo " src="assets/logo-suplos-intelcost.png" alt="">
+    </div>
+
+    <div class="col-12 text-center">
+      <div class="pl-4 pr-4 pt-2">
+        <div class="input-group">
+          <input type="text" (keyup.enter)="search()" [(ngModel)]="textToSearch" class="form-control" placeholder="Busca imágenes en este sitio (Ej.: Educación, computadoras, ciencia etc...)">
+          <div class="input-group-append">
+            <button (click)="search()" class="btn btn-secondary" type="button">
+              <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="mt-2 mb-5" />
+
+  <div class="row no-gutters text-center text-lg-left pl-4 pr-4">
+    <ng-container>
+      <app-images></app-images>
+    </ng-container>
+  </div>
+</div>
