@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
 
   category: any = null;
 
+  actualPage = 1;
+
   categories = [
     {id: 'all' , value: 'All' },
     {id: 'science', value: 'Science'},

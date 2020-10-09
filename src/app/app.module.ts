@@ -10,12 +10,14 @@ import { ImagesComponent } from './components/images/images.component';
 import { FormsModule } from '@angular/forms';
 import { PixabayService } from './services/images/pixabay.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from './components/pagination/pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DetailsComponent,
-    ImagesComponent
+    ImagesComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

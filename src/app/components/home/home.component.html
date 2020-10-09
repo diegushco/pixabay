@@ -10,14 +10,14 @@
     <div class="col-12 text-center">
       <div class="pl-4 pr-4 pt-2">
         <div class="input-group">
-          <input type="text" (keyup.enter)="search()" [(ngModel)]="textToSearch" class="form-control" placeholder="Search images on this site (Education, computers, science...)">
+          <input type="text" (keyup.enter)="search(); actualPage = 1;" [(ngModel)]="textToSearch" class="form-control" placeholder="Search images on this site (Education, computers, science...)">
           <div class="input-group-append">
             <select #category (change)="chgCategory(category.value)" class="form-control" data-live-search="true" title="Please select a category">
               <option *ngFor="let category of categories">{{category.value}}</option>
           </select>
           </div>
           <div class="input-group-append">
-            <button (click)="search()" class="btn btn-secondary" type="button">
+            <button (click)="search(); actualPage = 1;" class="btn btn-secondary" type="button">
               <fa-icon [icon]="faSearch"></fa-icon>
             </button>
           </div>
@@ -36,6 +36,7 @@
       <ng-container *ngFor="let hit of images.hits">
         <app-images [image]="hit" class="col-lg-3 col-md-4 col-xs-6"></app-images>
       </ng-container>
+      <app-pagination #pagination [actualPage]="actualPage" (pages)="actualPage = $event" [total]="images.totalHits"></app-pagination>
     </ng-container>
     <!-- <ng-container *ngIf="(images$ | async)?.total === 0">
       Did not match any results.
@@ -45,6 +46,7 @@
       Try different keywords (Laptop, technology...).
     </ng-container> -->
   </div>
+
 </div>
 
 
