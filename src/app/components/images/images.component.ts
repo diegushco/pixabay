@@ -7,11 +7,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./images.component.scss']
 })
 export class ImagesComponent implements OnInit {
-  @ViewChild('myModal', { static: false }) myModal: ElementRef;
 
+  /**
+   * To save image from api
+   */
   @Input() image: IHit;
-
-  modal: any = null;
 
   constructor(private modalService: NgbModal) { }
 
@@ -19,10 +19,11 @@ export class ImagesComponent implements OnInit {
    // console.log(this.image);
   }
 
+  /**
+   * Open modal for this image
+   */
   openModel(content): void {
     this.modalService.open(content, { size: 'lg' });
   }
-
-  bindModal(modal) {this.modal = modal;}
 
 }
