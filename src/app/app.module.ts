@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { PixabayService } from './services/images/pixabay.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [PixabayService],
   bootstrap: [AppComponent]

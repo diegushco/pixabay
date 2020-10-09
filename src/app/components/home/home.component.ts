@@ -12,7 +12,8 @@ import { IPixabay } from '../../interfaces/Pixabay.interface';
 })
 export class HomeComponent implements OnInit {
 
-  private searchSubject: BehaviorSubject<{text: string, category: any}> = new BehaviorSubject({text: '', category: null});
+  private searchSubject: BehaviorSubject<{text: string, category: any, page: number}> =
+   new BehaviorSubject({text: '', category: null, page: null });
 
   faSearch = faSearch;
 
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
     this.images$ = this.searchSubject.pipe(
       debounceTime(400), distinctUntilChanged(),
       switchMap((data) => {
-        return this.doSearch(data.text, data.category);
+        return this.doSearch(data.text, data.category, data.page);
       }),
       tap((data)=>console.log("resultado:", data)),
       share()
@@ -51,11 +52,11 @@ export class HomeComponent implements OnInit {
   }
 
   search(): void{
-    this.searchSubject.next({text: this.textToSearch, category: this.category});
+    this.searchSubject.next({text: this.textToSearch, category: this.category, page: this.actualPage});
   }
 
-  doSearch(text: string, category: any): Observable<IPixabay>{
-    return this.pixaBayService.getImageBySearch(text, category);
+  doSearch(text: string, category: any, page: number): Observable<IPixabay>{
+    return this.pixaBayService.getImageBySearch(text, category, page);
   }
 
   chgCategory(value: string): void{
@@ -63,6 +64,11 @@ export class HomeComponent implements OnInit {
     if (value === 'All'){
       this.category = null;
     }
+  }
+
+  chgPage(pageNumber): void{
+    this.actualPage = pageNumber;
+    this.search();
   }
 
 }

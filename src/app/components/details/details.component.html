@@ -1,1 +1,17 @@
-<p>details works!</p>
+<div class="col-12">
+  <img class="suplos-img" [src]="image.webformatURL" alt="" />
+</div>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-xs-12">
+    Tags:
+    <span class="badge badge-primary ml-1" *ngFor="let tag of splitTags(image.tags)">
+      {{tag}}
+    </span>
+  </div>
+  <div class="col-lg-4 col-md-4 col-xs-12">
+    Views: {{image.views}}
+  </div>
+  <div class="col-lg-4 col-md-4 col-xs-12">
+    Likes: <span class="badge badge-success">{{image.likes}}</span>
+  </div>
+</div>

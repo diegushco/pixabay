@@ -1,9 +1,29 @@
 <div >
-  <a href="#" class="d-block mb-4 h-100">
+  <a (click)="openModel(longContent)" class="d-block mb-4 h-100">
     <img
       class="img-fluid shadow-sm p-2 mb-1 bg-white rounded img-suplos"
-      [src]="image.webformatURL"
+      [src]="image.largeImageURL"
       alt=""
     />
   </a>
 </div>
+
+
+<!-- Modal -->
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-details [image]="image"></app-details>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+
+
