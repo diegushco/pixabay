@@ -12,24 +12,24 @@ import { IPixabay } from '../../interfaces/Pixabay.interface';
 })
 export class HomeComponent implements OnInit {
 
-  private searchSubject: Subject<any> = new Subject();
+  private searchSubject: BehaviorSubject<{text: string, category: any}> = new BehaviorSubject({text: '', category: null});
 
   faSearch = faSearch;
 
-  textToSearch: string;
+  textToSearch: string = '';
 
   images$: Observable<any> = new Observable();
 
-  category: string = 'all';
+  category: any = null;
 
   categories = [
-    {value: 'All' },
-    {value: 'Science'},
-    {value: 'Education'},
-    {value: 'People'},
-    {value: 'Feelings'},
-    {value: 'Computer'},
-    {value: 'Buildings'}
+    {id: 'all' , value: 'All' },
+    {id: 'science', value: 'Science'},
+    {id: 'education', value: 'Education'},
+    {id: 'people', value: 'People'},
+    {id: 'feelings', value: 'Feelings'},
+    {id: 'computer', value: 'Computer'},
+    {id: 'buildings', value: 'Buildings'},
   ];
 
   constructor(
@@ -39,27 +39,28 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.images$ = this.searchSubject.pipe(
       debounceTime(400), distinctUntilChanged(),
-      switchMap(() => {
-        return this.doSearch(this.textToSearch);
+      switchMap((data) => {
+        return this.doSearch(data.text, data.category);
       }),
       tap((data)=>console.log("resultado:", data)),
       share()
     );
-    this.searchSubject.next('');
-    console.log("mmm");
+    this.search();
   }
 
   search(): void{
-    console.log(this.textToSearch);
-    this.searchSubject.next(this.textToSearch);
+    this.searchSubject.next({text: this.textToSearch, category: this.category});
   }
 
-  doSearch(text): Observable<IPixabay>{
-    return this.pixaBayService.getImageBySearch(text);
+  doSearch(text: string, category: any): Observable<IPixabay>{
+    return this.pixaBayService.getImageBySearch(text, category);
   }
 
-  chgCategory(value:string){
-    console.log("->"+value);
+  chgCategory(value: string): void{
+    this.category = this.categories.find((c) => c.value === value).id;
+    if (value === 'All'){
+      this.category = null;
+    }
   }
 
 }

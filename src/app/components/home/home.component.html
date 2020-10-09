@@ -12,7 +12,7 @@
         <div class="input-group">
           <input type="text" (keyup.enter)="search()" [(ngModel)]="textToSearch" class="form-control" placeholder="Search images on this site (Education, computers, science...)">
           <div class="input-group-append">
-            <select #category (change)="chgCategory(category.value)" id="lunch" class="form-control" data-live-search="true" title="Please select a category">
+            <select #category (change)="chgCategory(category.value)" class="form-control" data-live-search="true" title="Please select a category">
               <option *ngFor="let category of categories">{{category.value}}</option>
           </select>
           </div>
@@ -26,10 +26,13 @@
     </div>
   </div>
 
-  <hr class="mt-2 mb-5" />
+  <hr class="mt-2 mb-2" />
 
   <div class="row no-gutters text-center text-lg-left pl-4 pr-4">
     <ng-container *ngIf="images$ | async as images">
+      <div class="col-12">
+        <h5 class="legend-result">About {{images.total | number}} results</h5>
+      </div>
       <ng-container *ngFor="let hit of images.hits">
         <app-images [image]="hit" class="col-lg-3 col-md-4 col-xs-6"></app-images>
       </ng-container>
